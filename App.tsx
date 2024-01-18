@@ -36,6 +36,11 @@ const useInitialURL = () => {
     };
 
     getUrlAsync();
+
+    const updateUrl = (event: { url: string; }) => { setUrl(event.url); };
+    Linking.addEventListener("url", updateUrl);
+    return () => Linking.removeAllListeners("url");
+
   }, []);
 
   return {url, processing};
